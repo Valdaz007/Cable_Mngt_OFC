@@ -27,16 +27,20 @@
     <title>Add Pole Installation</title>
 </head>
 <body>
-    <form action="./inc/func/func_updatePoleTbl.php" method="POST" class="p-5">
-        <h2>Pole Installation</h2>
-        <input type="text" name="coordx" class="form-control mb-2" placeholder="Enter Pole Latitude">
-        <input type="text" name="coordy" class="form-control mb-2" placeholder="Enter Pole Longitude">
-        <input type="text" name="zone" class="form-control mb-2" placeholder="Enter Zone">
-        <input type="submit" name="submit" class="btn btn-primary">
-    </form>
 
-    <div id="mapCont">
-    </div>
+    <header>
+        <div class="header_Cont">
+            <h1>CABLE MANAGEMENT</h1>
+            <button class="btn btn-sm btn-warning" onclick="addPole()">Add Pole</button>
+        </div>
+    </header>
+
+    <main>
+        <div id="mapCont">
+        </div>
+
+        <?php include './inc/temp/temp_addPole.php'; ?>
+    </main>
 
     <input id="polesData" type="hidden" style="display:none;" data-poles='<?php echo json_encode(getPoles()); ?>'>
 
@@ -45,11 +49,45 @@
 </html>
 
 <style>
+    body {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    header {
+        width: 100%;
+        height: 65px;
+
+        padding: .8rem;
+
+        background-color: dodgerblue;
+
+        .header_Cont {
+            width: 95%;
+            margin: 0 auto;
+            height: 100%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header_Cont h1 {
+            color: white;
+            font-size: 1.6rem;
+        }
+    }
+
+    main {
+        width: 100%;
+        height: calc(100vh - 65px);
+
+        position: relative;
+    }
+
     #mapCont {
-        width: 90%;
-        margin: 0 auto;
-        margin-bottom: 3rem;
-        aspect-ratio: 2/1;
+        width: 100%;
+        height: 100%;
     }
 </style>
 
@@ -57,7 +95,7 @@
 <script>
     let mapOptions = {
         center: [-9.45142, 147.19585],
-        zoom: 13
+        zoom: 14
     }
 
     let map = new L.map('mapCont', mapOptions)
@@ -73,5 +111,11 @@
     poles.forEach((i, idx)=>{
         temp = new L.Marker([parseFloat(i[1]), parseFloat(i[2])])
         temp.addTo(map)
+    })
+
+    //? Event to trigger when a location on map is clicked
+    map.on('click', (event)=>{
+        $('#pole-lat').val(event.latlng.lat.toFixed(5))
+        $('#pole-lng').val(event.latlng.lng.toFixed(5))
     })
 </script>
