@@ -102,6 +102,17 @@
     let layer = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
     map.addLayer(layer)
 
+    let customIcon = {
+        iconUrl: "./inc/img/ofc-pole3.png",
+        iconSize: [30, 30],
+        iconAnchor: [15,30]
+    }
+
+    let myIcon = L.icon(customIcon)
+
+    let iconOptions = {
+        icon: myIcon
+    }
 
     //? Pull In Pole Coordinates & Add Marker to Map
 
@@ -109,7 +120,7 @@
     poles = JSON.parse(poles)
 
     poles.forEach((i, idx)=>{
-        temp = new L.Marker([parseFloat(i[1]), parseFloat(i[2])])
+        temp = new L.Marker([parseFloat(i[1]), parseFloat(i[2])], iconOptions)
         temp.addTo(map)
     })
 
