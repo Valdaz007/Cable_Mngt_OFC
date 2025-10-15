@@ -12,7 +12,7 @@
         mysqli_close($conxn);
 
         if($rx){
-            header("location: ./../../pole_installation.php?pole=true"); 
+            header("location: ./../../cmsofc.php?pole=true"); 
         }
         else {
             echo $rx;
