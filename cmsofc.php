@@ -31,12 +31,20 @@
     <header>
         <div class="header_Cont">
             <h1>CABLE MANAGEMENT</h1>
-            <button class="btn btn-sm btn-warning" onclick="addPole()">Add Pole</button>
         </div>
     </header>
 
     <main>
         <div id="mapCont">
+        </div>
+
+        <div class="sideMenuBar p-3">
+            <button class="btn btn-sm btn-warning w-75 mb-2" onclick="addPole()">Add Pole</button>
+            <button class="btn btn-sm btn-warning w-75 mb-2" onclick="addPole()">Add Junction Box</button>
+            <button class="btn btn-sm btn-warning w-75 mb-2" onclick="addPole()">Add Splitter</button>
+            <button class="btn btn-sm btn-warning w-75 mb-2" onclick="addPole()">Add Cable</button>
+            <button class="btn btn-sm btn-warning w-75 mb-2" onclick="addPole()">Add OLT</button>
+            <button class="btn btn-sm btn-warning w-75 mb-2" onclick="addPole()">Add ONU</button>
         </div>
 
         <?php include './inc/temp/temp_addPole.php'; ?>
@@ -83,6 +91,7 @@
         height: calc(100vh - 65px);
 
         position: relative;
+        display: flex;
 
         #polePopup {
             & p {
@@ -90,6 +99,17 @@
                 padding: 0;
             }
         }
+    }
+
+    .sideMenuBar {
+        width: 200px;
+        height: 100%;
+
+        background-color: skyblue;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     #mapCont {
