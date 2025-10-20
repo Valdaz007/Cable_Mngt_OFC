@@ -9,7 +9,7 @@
         mysqli_close($conxn);
 
         if(mysqli_num_rows($rx) > 0){
-            return mysqli_fetch_all($rx);
+            return $rx;
         }
         else {
             return 'Error';
@@ -40,17 +40,21 @@
 
         <div class="sideMenuBar p-3">
             <button class="btn btn-sm btn-warning w-75 mb-2" onclick="addPole()">Add Pole</button>
-            <button class="btn btn-sm btn-warning w-75 mb-2" onclick="addPole()">Add Junction Box</button>
+            <button class="btn btn-sm btn-warning w-75 mb-2" onclick="addJB()">Add Enclosure</button>
             <button class="btn btn-sm btn-warning w-75 mb-2" onclick="addPole()">Add Splitter</button>
             <button class="btn btn-sm btn-warning w-75 mb-2" onclick="addPole()">Add Cable</button>
             <button class="btn btn-sm btn-warning w-75 mb-2" onclick="addPole()">Add OLT</button>
             <button class="btn btn-sm btn-warning w-75 mb-2" onclick="addPole()">Add ONU</button>
+            <br><br>
+            <button class="btn btn-sm btn-warning w-75 mb-2" onclick="pomVw()">POM</button>
+            <button class="btn btn-sm btn-warning w-75 mb-2" onclick="mdgVw()">MADANG</button>
         </div>
 
         <?php include './inc/temp/temp_addPole.php'; ?>
+        <?php include './inc/temp/temp_addJuncBox.php'; ?>
     </main>
 
-    <input id="polesData" type="hidden" style="display:none;" data-poles='<?php echo json_encode(getPoles()); ?>'>
+    <input id="polesData" type="hidden" style="display:none;" data-poles='<?php echo json_encode(mysqli_fetch_all(getPoles())); ?>'>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </body>
@@ -171,4 +175,12 @@
         $('#pole-lat').val(event.latlng.lat.toFixed(5))
         $('#pole-lng').val(event.latlng.lng.toFixed(5))
     })
+
+    function mdgVw(){
+        map.setView([-5.21874, 145.80520])
+    }
+
+    function pomVw(){
+        map.setView([-9.45142, 147.19585])
+    }
 </script>
