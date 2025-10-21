@@ -27,12 +27,7 @@
     <title>Add Pole Installation</title>
 </head>
 <body>
-
-    <header>
-        <div class="header_Cont">
-            <h1>CABLE MANAGEMENT</h1>
-        </div>
-    </header>
+    <?php include './inc/temp/temp_header.php'; ?>
 
     <main>
         <div id="mapCont">
@@ -57,130 +52,109 @@
     <input id="polesData" type="hidden" style="display:none;" data-poles='<?php echo json_encode(mysqli_fetch_all(getPoles())); ?>'>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-</body>
-</html>
 
-<style>
-    body {
-        width: 100%;
-        box-sizing: border-box;
-    }
+    <style>
+        body {
+            width: 100%;
+            box-sizing: border-box;
+        }
 
-    header {
-        width: 100%;
-        height: 65px;
+        main {
+            width: 100%;
+            height: calc(100vh - 65px);
 
-        padding: .8rem;
-
-        background-color: dodgerblue;
-
-        .header_Cont {
-            width: 95%;
-            margin: 0 auto;
-            height: 100%;
-
+            position: relative;
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
 
-        .header_Cont h1 {
-            color: white;
-            font-size: 1.6rem;
-        }
-    }
-
-    main {
-        width: 100%;
-        height: calc(100vh - 65px);
-
-        position: relative;
-        display: flex;
-
-        #polePopup {
-            & p {
-                margin: 0;
-                padding: 0;
+            #polePopup {
+                & p {
+                    margin: 0;
+                    padding: 0;
+                }
             }
         }
-    }
 
-    .sideMenuBar {
-        width: 200px;
-        height: 100%;
+        .sideMenuBar {
+            width: 200px;
+            height: 100%;
 
-        background-color: skyblue;
+            background-color: skyblue;
 
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    #mapCont {
-        width: 100%;
-        height: 100%;
-    }
-</style>
+        #mapCont {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 
-<script src="./inc/js/jquery-3.7.1.min.js"></script>
-<script>
-    let mapOptions = {
-        center: [-9.45142, 147.19585],
-        zoom: 14
-    }
+    <script src="./inc/js/jquery-3.7.1.min.js"></script>
+    <script>
+        let mapOptions = {
+            center: [-9.45142, 147.19585],
+            zoom: 14
+        }
 
-    let map = new L.map('mapCont', mapOptions)
-    let layer = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
-    map.addLayer(layer)
+        let map = new L.map('mapCont', mapOptions)
+        let layer = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
+        map.addLayer(layer)
 
-    let customIcon = {
-        iconUrl: "./inc/img/ofc-pole3.png",
-        iconSize: [40, 40],
-        iconAnchor: [20,40],
-        popupAnchor: [0,-40]
-    }
+        let customIcon = {
+            iconUrl: "./inc/img/ofc-pole3.png",
+            iconSize: [40, 40],
+            iconAnchor: [20,40],
+            popupAnchor: [0,-40]
+        }
 
-    let myIcon = L.icon(customIcon)
+        let myIcon = L.icon(customIcon)
 
-    let iconOptions = {
-        icon: myIcon
-    }
+        let iconOptions = {
+            icon: myIcon
+        }
 
-    //? Pull In Pole Coordinates & Add Marker to Map
-    let poles = $('#polesData').attr('data-poles')
-    poles = JSON.parse(poles)
+        //? Pull In Pole Coordinates & Add Marker to Map
+        let poles = $('#polesData').attr('data-poles')
+        poles = JSON.parse(poles)
 
-    poles.forEach((i, idx)=>{
-        //? Add Marker to Map
-        new L.Marker([parseFloat(i[1]), parseFloat(i[2])], iconOptions).addTo(map)
-        
-        //? Add PopUp Content
-        .on("mouseover", event => {
-            event.target.bindPopup(`
-                <div id="polePopup">
-                    <p>ID: ${i[0]}</p>
-                    <p>Lat: ${parseFloat(i[1])}</p>
-                    <p>Lng: ${parseFloat(i[2])}</p>
-                    <p>Zone: ${i[3]}</p>
-                </div>`, {'closeButton': false})
-            .openPopup()
+        poles.forEach((i, idx)=>{
+            //? Add Marker to Map
+            new L.Marker([parseFloat(i[1]), parseFloat(i[2])], iconOptions).addTo(map)
+            
+            //? Add PopUp Content
+            .on("mouseover", event => {
+                event.target.bindPopup(`
+                    <div id="polePopup">
+                        <p>ID: ${i[0]}</p>
+                        <p>Lat: ${parseFloat(i[1])}</p>
+                        <p>Lng: ${parseFloat(i[2])}</p>
+                        <p>Zone: ${i[3]}</p>
+                    </div>`, {'closeButton': false})
+                .openPopup()
+            })
+            .on("mouseout", event => {
+                event.target.closePopup()
+            })
+            .on("click", event => {
+                console.log('Hello')
+            })
         })
-        .on("mouseout", event => {
-            event.target.closePopup()
+
+        //? Event to trigger when a location on map is clicked
+        map.on('click', (event)=>{
+            $('#pole-lat').val(event.latlng.lat.toFixed(5))
+            $('#pole-lng').val(event.latlng.lng.toFixed(5))
         })
-    })
 
-    //? Event to trigger when a location on map is clicked
-    map.on('click', (event)=>{
-        $('#pole-lat').val(event.latlng.lat.toFixed(5))
-        $('#pole-lng').val(event.latlng.lng.toFixed(5))
-    })
+        function mdgVw(){
+            map.setView([-5.21874, 145.80520])
+        }
 
-    function mdgVw(){
-        map.setView([-5.21874, 145.80520])
-    }
-
-    function pomVw(){
-        map.setView([-9.45142, 147.19585])
-    }
-</script>
+        function pomVw(){
+            map.setView([-9.45142, 147.19585])
+        }
+    </script>
+</body>
+</html>
