@@ -45,7 +45,7 @@ poles.forEach((i, idx)=>{
     })
     
     .on("click", event => {
-        console.log("Hello")
+        $('#mapCont').load('./inc/temp/temp_poleView.php', {'poleId': `${i[0]}`})
     })
 })
 

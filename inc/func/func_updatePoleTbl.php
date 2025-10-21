@@ -18,3 +18,22 @@
             echo $rx;
         }
     }
+    elseif(isset($_POST['subDelID'])) {
+        delPole($_POST['poleID']);
+    }
+
+    function delPole($id){
+        $conxn = openDB();
+        $sql = "DELETE FROM `tbl_poles` WHERE `pole_id` = $id";
+        echo $sql;
+
+        $rx = mysqli_query($conxn, $sql);
+        mysqli_close($conxn);
+
+        if($rx){
+            header("location: ./../../cmsofc.php?poleDel=true");
+        }
+        else {
+            echo $rx;
+        }
+    }
