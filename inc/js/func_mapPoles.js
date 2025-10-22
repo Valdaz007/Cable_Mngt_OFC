@@ -7,17 +7,25 @@ let map = new L.map('mapCont', mapOptions)
 let layer = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
 map.addLayer(layer)
 
-let customIcon = {
+let customIcon1 = {
     iconUrl: "./inc/img/ofc-pole3.png",
     iconSize: [40, 40],
     iconAnchor: [20,40],
     popupAnchor: [0,-40]
 }
 
-let myIcon = L.icon(customIcon)
+let customIcon2 = {
+    iconUrl: "./inc/img/ofc-pole5.png",
+    iconSize: [40, 40],
+    iconAnchor: [20,40],
+    popupAnchor: [0,-40]
+}
+
+let myIcon1 = L.icon(customIcon1)
+let myIcon2 = L.icon(customIcon2)
 
 let iconOptions = {
-    icon: myIcon
+    icon: myIcon1
 }
 
 //? Pull In Pole Coordinates & Add Marker to Map
@@ -26,6 +34,11 @@ poles = JSON.parse(poles)
 
 poles.forEach((i, idx)=>{
     //? Add Marker to Map
+    if(i[4]==1)
+        iconOptions.icon = myIcon2
+    else
+        iconOptions.icon = myIcon1
+
     new L.Marker([parseFloat(i[1]), parseFloat(i[2])], iconOptions).addTo(map)
     
     //? Add PopUp Content
