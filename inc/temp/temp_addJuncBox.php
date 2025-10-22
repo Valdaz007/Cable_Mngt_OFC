@@ -45,9 +45,11 @@
         if(addJBVw==false){
             $('.add_JuncBox_Form').css('display', 'block')
             addJBVw = true
-            
+
             $('.add_Pole_Form').css('display', 'none')
             addPoleVw = false
+            $('.add_Spltr_Form').css('display', 'none')
+            addSpltrVw = false
         }
         else {
             $('.add_JuncBox_Form').css('display', 'none')

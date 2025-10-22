@@ -15,6 +15,21 @@
             return 'Error';
         }
     }
+
+    function getJBs(){
+        $sql = "SELECT * FROM `tbl_junction-boxes`;";
+        $conxn = openDB();
+
+        $rx = mysqli_query($conxn, $sql);
+        mysqli_close($conxn);
+
+        if(mysqli_num_rows($rx) > 0){
+            return $rx;
+        }
+        else {
+            return 'Error';
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -37,6 +52,7 @@
 
         <?php include './inc/temp/temp_addPole.php'; ?>
         <?php include './inc/temp/temp_addJuncBox.php'; ?>
+        <?php include './inc/temp/temp_addSpltr.php'; ?>
     </main>
 
     <input id="polesData" type="hidden" style="display:none;" data-poles='<?php echo json_encode(mysqli_fetch_all(getPoles())); ?>'>
