@@ -50,6 +50,8 @@
             addPoleVw = false
             $('.add_Spltr_Form').css('display', 'none')
             addSpltrVw = false
+            $('.add_OLT_Form').css('display', 'none')
+            addOLTVw = false
         }
         else {
             $('.add_JuncBox_Form').css('display', 'none')

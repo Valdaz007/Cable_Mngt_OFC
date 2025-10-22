@@ -57,6 +57,8 @@
             addPoleVw = false
             $('.add_JuncBox_Form').css('display', 'none')
             addJBVw = false
+            $('.add_OLT_Form').css('display', 'none')
+            addOLTVw = false
         }
         else {
             $('.add_Spltr_Form').css('display', 'none')

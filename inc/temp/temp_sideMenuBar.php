@@ -3,7 +3,7 @@
             <button class="btn btn-sm btn-warning w-75 mb-2" onclick="addJB()">Add Enclosure</button>
             <button class="btn btn-sm btn-warning w-75 mb-2" onclick="addSpltr()">Add Splitter</button>
             <button class="btn btn-sm btn-warning w-75 mb-2" onclick="addPole()">Add Cable</button>
-            <button class="btn btn-sm btn-warning w-75 mb-2" onclick="addPole()">Add OLT</button>
+            <button class="btn btn-sm btn-warning w-75 mb-2" onclick="addOLT()">Add OLT</button>
             <button class="btn btn-sm btn-warning w-75 mb-2" onclick="addPole()">Add ONU</button>
             <br><br>
             <button class="btn btn-sm btn-warning w-75 mb-2" onclick="pomVw()">POM</button>

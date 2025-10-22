@@ -44,6 +44,8 @@
             addJBVw = false
             $('.add_Spltr_Form').css('display', 'none')
             addSpltrVw = false
+            $('.add_OLT_Form').css('display', 'none')
+            addOLTVw = false
         }
         else {
             $('.add_Pole_Form').css('display', 'none')

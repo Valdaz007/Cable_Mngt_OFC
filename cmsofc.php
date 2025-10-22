@@ -53,6 +53,7 @@
         <?php include './inc/temp/temp_addPole.php'; ?>
         <?php include './inc/temp/temp_addJuncBox.php'; ?>
         <?php include './inc/temp/temp_addSpltr.php'; ?>
+        <?php include './inc/temp/temp_addOLT.php'; ?>
     </main>
 
     <input id="polesData" type="hidden" style="display:none;" data-poles='<?php echo json_encode(mysqli_fetch_all(getPoles())); ?>'>
