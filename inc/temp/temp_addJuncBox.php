@@ -38,6 +38,9 @@
         if(addJBVw==false){
             $('.add_JuncBox_Form').css('display', 'block')
             addJBVw = true
+            
+            $('.add_Pole_Form').css('display', 'none')
+            addPoleVw = false
         }
         else {
             $('.add_JuncBox_Form').css('display', 'none')
