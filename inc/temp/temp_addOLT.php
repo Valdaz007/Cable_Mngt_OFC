@@ -1,20 +1,16 @@
-<form class="add_OLT_Form" action="#" method="POST" class="p-5">
+<form class="add_OLT_Form" action="./inc/func/func_onPremiseNode.php" method="POST" class="p-5">
     <h6>OLT Installation</h6>
     <div class="form-floating mb-2">
-        <input type="text" name="spltr-ratio" class="form-control" id="spltr-ratio" placeholder="OLT PON No.">
-        <label for="spltr-ratio">OLT PON No.</label>
+        <input type="text" name="olt-pon" class="form-control" id="olt-pon" placeholder="OLT PON No.">
+        <label for="olt-pon">OLT PON No.</label>
     </div>
     <div class="form-floating mb-2">
-        <input type="text" name="spltr-tray" class="form-control" id="spltr-tray" placeholder="OLT Description">
-        <label for="spltr-tray">OLT Description</label>
+        <input type="text" name="olt-desc" class="form-control" id="olt-desc" placeholder="OLT Description">
+        <label for="olt-desc">OLT Description</label>
     </div>
     <div class="form-floating">
-        <input type="text" name="coordx" class="form-control mb-2" id="olt-lat" placeholder="Enter OLT Latitude">
-        <label for="olt-lat">OLT Latitude</label>
-    </div>
-    <div class="form-floating">
-        <input type="text" name="coordy" class="form-control mb-2" id="olt-lng" placeholder="Enter OLT Longitude">
-        <label for="olt-lng">OLT Longitude</label>
+        <input type="text" name="olt-coords" class="form-control mb-2" id="olt-coords" placeholder="Enter OLT Latitude">
+        <label for="olt-coords">OLT Cordinates</label>
     </div>
 
     <input type="submit" name="addOlt" class="btn btn-primary">

@@ -64,8 +64,7 @@ poles.forEach((i, idx)=>{
 
 //? Event to trigger when a location on map is clicked
 map.on('click', (event)=>{
-    $('#olt-lat').val(event.latlng.lat.toFixed(5))
-    $('#olt-lng').val(event.latlng.lng.toFixed(5))
+    $('#olt-coords').val(`${event.latlng.lat.toFixed(5)},${event.latlng.lng.toFixed(5)}`)
     $('#pole-lat').val(event.latlng.lat.toFixed(5))
     $('#pole-lng').val(event.latlng.lng.toFixed(5))
 })
