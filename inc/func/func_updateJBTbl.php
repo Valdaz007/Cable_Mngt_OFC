@@ -16,3 +16,24 @@
             echo $rx;
         }
     }
+
+    //? ADD SPLITTER TO DB
+    if(isset($_POST['addSpltr'])){
+        addSpltr($_POST['spltr-ratio'], $_POST['spltr-tray'], $_POST['spltr-desc'], $_POST['jbID']);
+    }
+
+    function addSpltr($ratio, $tray, $desc, $jbID){
+        $conxn = openDB();
+        $spltrID = uniqid('spl');
+        $sql = "INSERT INTO `tbl_splitter` (`spltr_id`, `spltr_ratio`, `spltr_tray`, `spltr_desc`, `jb_id`)
+                VALUES('$spltrID', '$ratio', '$tray', '$desc', $jbID)";
+        $rx = mysqli_query($conxn, $sql);
+        mysqli_close($conxn);
+
+        if($rx){
+            header("location: ./../../cmsofc.php?spltr=1");
+        }
+        else {
+            echo $rx;
+        }
+    }

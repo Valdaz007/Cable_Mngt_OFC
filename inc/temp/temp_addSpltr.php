@@ -17,8 +17,12 @@
         <label for="spltr-ratio">Splitter Ratio</label>
     </div>
     <div class="form-floating mb-2">
-        <input type="text" name="spltr-tray" class="form-control" id="spltr-tray" placeholder="Splitter Ratio">
+        <input type="text" name="spltr-tray" class="form-control" id="spltr-tray" placeholder="Splitter Tray">
         <label for="spltr-tray">Tray No.</label>
+    </div>
+    <div class="form-floating mb-2">
+        <input type="text" name="spltr-desc" class="form-control" id="spltr-tray" placeholder="Splitter Description">
+        <label for="spltr-desc">Splitter Description</label>
     </div>
 
     <input type="submit" name="addSpltr" class="btn btn-primary">
