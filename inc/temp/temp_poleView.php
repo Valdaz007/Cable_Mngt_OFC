@@ -25,6 +25,7 @@
             </div>
         </div>
         <div class="w-100" style="display: flex; justify-content: right;">
+            <input type="hidden" name="poleID" value="<?php echo $_POST['pole'][0]; ?>">
             <input type="submit" name="subDelID" class="btn btn-danger" style="width: 150px;" value="Delete"/>
         </div>
     </form>
