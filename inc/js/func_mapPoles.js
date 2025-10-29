@@ -21,8 +21,17 @@ let customIcon2 = {
     popupAnchor: [0,-40]
 }
 
+let custOltIcon = {
+    iconUrl: "./inc/img/olt.png",
+    iconSize: [40, 15],
+    iconAnchor: [20,15],
+    popupAnchor: [0,-20]
+}
+
 let myIcon1 = L.icon(customIcon1)
 let myIcon2 = L.icon(customIcon2)
+
+let oltIcon = L.icon(custOltIcon)
 
 let iconOptions = {
     icon: myIcon1
@@ -60,6 +69,17 @@ poles.forEach((i, idx)=>{
     .on("click", event => {
         $('#mapCont').load('./inc/temp/temp_poleView.php', {'pole':[`${i[0]}`, `${i[1]}`, `${i[2]}`, `${i[3]}`]})
     })
+})
+
+//? Pull OLTs Coords & Add Marker
+iconOptions.icon = oltIcon
+
+let olts = $('#oltsData').attr('data-olts')
+olts = JSON.parse(olts)
+
+olts.forEach((i, idx)=>{
+    let coordArr = i[3].split(',')
+    new L.Marker([coordArr[0],coordArr[1]], iconOptions).addTo(map)
 })
 
 //? Event to trigger when a location on map is clicked

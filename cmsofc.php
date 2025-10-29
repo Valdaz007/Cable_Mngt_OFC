@@ -30,6 +30,21 @@
             return 'Error';
         }
     }
+
+    function getOLTs(){
+        $sql = "SELECT * FROM `tbl_olts`;";
+        $conxn = openDB();
+
+        $rx = mysqli_query($conxn, $sql);
+        mysqli_close($conxn);
+
+        if(mysqli_num_rows($rx) > 0){
+            return $rx;
+        }
+        else {
+            return 'Error';
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -57,6 +72,7 @@
     </main>
 
     <input id="polesData" type="hidden" style="display:none;" data-poles='<?php echo json_encode(mysqli_fetch_all(getPoles())); ?>'>
+    <input id="oltsData" type="hidden" style="display:none;" data-olts='<?php echo json_encode(mysqli_fetch_all(getOLTs())); ?>'>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
