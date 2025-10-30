@@ -62,9 +62,10 @@
     <main>
         <div id="mapCont">
         </div>
-
+        <?php include './inc/temp/temp_poleView.php'; ?>
         <?php include './inc/temp/temp_sideMenuBar.php'; ?>
 
+        <!-- Modals Elements -->
         <?php include './inc/temp/temp_addPole.php'; ?>
         <?php include './inc/temp/temp_addJuncBox.php'; ?>
         <?php include './inc/temp/temp_addSpltr.php'; ?>
@@ -89,6 +90,8 @@
             position: relative;
             display: flex;
 
+            overflow: hidden;
+
             #polePopup {
                 & p {
                     margin: 0;
@@ -100,6 +103,8 @@
         #mapCont {
             width: 100%;
             height: 100%;
+
+            position: relative;
         }
     </style>
 

@@ -67,7 +67,11 @@ poles.forEach((i, idx)=>{
     })
     
     .on("click", event => {
-        $('#mapCont').load('./inc/temp/temp_poleView.php', {'pole':[`${i[0]}`, `${i[1]}`, `${i[2]}`, `${i[3]}`]})
+        $('.poleView').css('transform', 'translateX(-200px)')
+        $('#poleID').val(`${i[0]}`)
+        $('#poleZone').val(`${i[1]}`)
+        $('#poleLat').val(`${i[2]}`)
+        $('#poleLng').val(`${i[3]}`)
     })
 })
 

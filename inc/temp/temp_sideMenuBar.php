@@ -12,6 +12,7 @@
 
         <style>
             .sideMenuBar {
+                min-width: 200px;
                 width: 200px;
                 height: 100%;
 
@@ -20,5 +21,7 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                z-index: 9999;
+
             }
         </style>
