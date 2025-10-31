@@ -9,19 +9,19 @@
         <div>
             <div class="form-floating">
                 <input type="text" class="form-control" id="poleID" value="" disabled>
-                <label for="poleID">Pole ID</label>
+                <label for="poleID">Node ID</label>
             </div>
             <div class="form-floating">
                 <input type="text" class="form-control" id="poleZone" value="" disabled>
-                <label for="poleZone">Pole Zone</label>
+                <label for="poleZone">Node Zone</label>
             </div>
             <div class="form-floating">
                 <input type="text" class="form-control" id="poleLat" value="" disabled>
-                <label for="poleLat">Pole Latitude</label>
+                <label for="poleLat">Node Latitude</label>
             </div>
             <div class="form-floating">
                 <input type="text" class="form-control" id="poleLng" value="" disabled>
-                <label for="poleLng">Pole Longitude</label>
+                <label for="poleLng">Node Longitude</label>
             </div>
             <div class="imgs">
 

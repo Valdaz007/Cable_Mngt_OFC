@@ -69,9 +69,9 @@ poles.forEach((i, idx)=>{
     .on("click", event => {
         $('.poleView').css('transform', 'translateX(-200px)')
         $('#poleID').val(`${i[0]}`)
-        $('#poleZone').val(`${i[1]}`)
-        $('#poleLat').val(`${i[2]}`)
-        $('#poleLng').val(`${i[3]}`)
+        $('#poleZone').val(`${i[3]}`)
+        $('#poleLat').val(`${i[1]}`)
+        $('#poleLng').val(`${i[2]}`)
     })
 })
 
@@ -84,6 +84,25 @@ olts = JSON.parse(olts)
 olts.forEach((i, idx)=>{
     let coordArr = i[3].split(',')
     new L.Marker([coordArr[0],coordArr[1]], iconOptions).addTo(map)
+
+    .on("mouseover", event => {
+        event.target.bindPopup(`
+            <div id="polePopup">
+                <p>ID: ${i[0]}</p>
+                <p>Lat: ${coordArr[0]}</p>
+                <p>Lng: ${coordArr[1]}</p>
+                <p>Zone: ${i[1]}</p>
+            </div>`, {'closeButton': false})
+        .openPopup()
+    })
+
+    .on('click', event =>{
+        $('.poleView').css('transform', 'translateX(-200px)')
+        $('#poleID').val(`${i[0]}`)
+        $('#poleZone').val(`${i[1]}`)
+        $('#poleLat').val(`${coordArr[0]}`)
+        $('#poleLng').val(`${coordArr[1]}`)
+    })
 })
 
 //? Event to trigger when a location on map is clicked
