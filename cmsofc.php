@@ -55,27 +55,6 @@
     <link rel="stylesheet" type="text/css" href="./inc/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <title>NTT CableManagementSystemOFC</title>
-</head>
-<body>
-    <?php include './inc/temp/temp_header.php'; ?>
-
-    <main>
-        <div id="mapCont">
-        </div>
-        <?php include './inc/temp/temp_poleView.php'; ?>
-        <?php include './inc/temp/temp_sideMenuBar.php'; ?>
-
-        <!-- Modals Elements -->
-        <?php include './inc/temp/temp_addPole.php'; ?>
-        <?php include './inc/temp/temp_addJuncBox.php'; ?>
-        <?php include './inc/temp/temp_addSpltr.php'; ?>
-        <?php include './inc/temp/temp_addOLT.php'; ?>
-    </main>
-
-    <input id="polesData" type="hidden" style="display:none;" data-poles='<?php echo json_encode(mysqli_fetch_all(getPoles())); ?>'>
-    <input id="oltsData" type="hidden" style="display:none;" data-olts='<?php echo json_encode(mysqli_fetch_all(getOLTs())); ?>'>
-
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <style>
         body {
@@ -107,6 +86,27 @@
             position: relative;
         }
     </style>
+</head>
+<body>
+    <?php include './inc/temp/temp_header.php'; ?>
+
+    <main>
+        <div id="mapCont">
+        </div>
+        <?php include './inc/temp/temp_poleView.php'; ?>
+        <?php include './inc/temp/temp_sideMenuBar.php'; ?>
+
+        <!-- Modals Elements -->
+        <?php include './inc/temp/temp_addPole.php'; ?>
+        <?php include './inc/temp/temp_addJuncBox.php'; ?>
+        <?php include './inc/temp/temp_addSpltr.php'; ?>
+        <?php include './inc/temp/temp_addOLT.php'; ?>
+    </main>
+
+    <input id="polesData" type="hidden" style="display:none;" data-poles='<?php echo json_encode(mysqli_fetch_all(getPoles())); ?>'>
+    <input id="oltsData" type="hidden" style="display:none;" data-olts='<?php echo json_encode(mysqli_fetch_all(getOLTs())); ?>'>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>    
 
     <script src="./inc/js/jquery-3.7.1.min.js"></script>
     <script src="./inc/js/func_mapPoles.js"></script>
