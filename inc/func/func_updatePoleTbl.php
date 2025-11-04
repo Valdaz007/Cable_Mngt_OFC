@@ -5,7 +5,7 @@
         addPole($_POST['lat'], $_POST['lng'], $_POST['zon']);
     }
     elseif(isset($_POST['subDelID'])) {
-        delPole($_POST['poleID']);
+        delPole($_POST['subDelID']);
     }
     elseif(isset($_POST['getPole'])){
         getPole();
@@ -14,17 +14,11 @@
     function delPole($id){
         $conxn = openDB();
         $sql = "DELETE FROM `tbl_poles` WHERE `pole_id` = $id";
-        echo $sql;
 
         $rx = mysqli_query($conxn, $sql);
         mysqli_close($conxn);
 
-        if($rx){
-            header("location: ./../../cmsofc.php?poleDel=true");
-        }
-        else {
-            echo $rx;
-        }
+        echo $rx;
     }
 
     function addPole($lat, $lng, $zon){

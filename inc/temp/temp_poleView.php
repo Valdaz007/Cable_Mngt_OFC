@@ -2,7 +2,7 @@
     <div class="backBtn">
         <button class="btn btn-sm btn-warning" style="text-decoration: none;" onclick="closePoleVw()"><span>>></span>Close</button>
     </div>
-    <form action="./inc/func/func_updatePoleTbl.php" method="POST" class="subHead">
+    <div class="subHead">
         
         <input type="hidden" id="poleData" data-pole="">
         
@@ -27,9 +27,9 @@
 
         <div class="delbtn" style="">
             <input type="hidden" name="poleID" id="delPoleId" value="">
-            <input type="submit" name="subDelID" class="btn btn-danger" style="width: 150px;" value="Delete"/>
+            <button class="btn btn-danger" style="width: 150px;" onclick="delPole()">Delete</button>
         </div>
-    </form>
+    </div>
 </div>
 
 <style>
@@ -77,8 +77,26 @@
     }
 </style>
 
-<script>
+<script defer>
     function closePoleVw(){
         $('.poleView').css('transform', 'translateX(400px)')
+    }
+
+    function delPole(){
+        markerId = $('#delPoleId').val()
+        $.ajax({
+            type: 'POST',
+            url: './inc/func/func_updatePoleTbl.php',
+            data: {
+                subDelID: markerId
+            },
+            cache: false,
+            success: function(data){
+                if(data){
+                    markers[markerId].remove(map)
+                }
+            },
+            error: (xhr, status, error)=>{ console.log(xhr) }
+        })
     }
 </script>
