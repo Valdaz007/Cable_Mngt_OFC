@@ -1,4 +1,4 @@
-<form class="add_Pole_Form" action="./inc/func/func_updatePoleTbl.php" method="POST" class="p-5">
+<div class="add_Pole_Form p-5" id="addPoleForm">
     <h6>Pole Installation</h6>
     <div class="form-floating">
         <input type="text" name="coordx" class="form-control mb-2" id="pole-lat" placeholder="Enter Pole Latitude">
@@ -12,8 +12,8 @@
         <input type="text" name="zone" class="form-control mb-2" id="pole-zone" placeholder="Enter Zone">
         <label for="pole-zone">Pole Zone</label>
     </div>
-    <input type="submit" name="submit" class="btn btn-primary">
-</form>
+    <button class="btn btn-primary" onclick="addPoleDB()">Add Pole</button>
+</div>
 
 <style>
     .add_Pole_Form {
@@ -51,5 +51,61 @@
             $('.add_Pole_Form').css('display', 'none')
             addPoleVw = false
         }
+    }
+
+    async function addPoleDB(){
+        let rx = await addPoleBE()
+        console.log(rx)
+        rx = await getPoleBE()
+        console.log(rx)
+    }
+
+    function addPoleBE(){
+        return new Promise((resolve, reject)=>{
+            $.ajax({
+                type: 'POST',
+                url: './inc/func/func_updatePoleTbl.php',
+                data: {
+                    subAddPole: true,
+                    lat: $('#pole-lat').val(),
+                    lng: $('#pole-lng').val(),
+                    zon: $('#pole-zone').val()
+                },
+                cache: false,
+                success: function(data){
+                    if(data){
+                        resolve(data)
+                    }
+                    else{
+                        reject('Error: '+data)
+                    }
+                },
+                error: (xhr, status, error)=>{ console.log(xhr) }
+            });
+        });
+    }
+
+    function getPoleBE(){
+        return new Promise((resolve, reject)=>{
+            $.ajax({
+                type: 'POST',
+                url: './inc/func/func_updatePoleTbl.php',
+                data: {
+                    getPole: true
+                },
+                cache: false,
+                success: function(data){
+                    if(data){
+                        data = JSON.parse(data)
+                        plotPole(data['pole_id'],data['pole_latitude'],data['pole_longitude'],data['pole_zone'])
+                        resolve(data)
+                    }
+                    else{
+                        reject(false)
+                    }
+                },
+                error: (xhr, status, error)=>{ console.error(xhr); }
+            });
+        });
     }
 </script>

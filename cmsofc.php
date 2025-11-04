@@ -1,6 +1,6 @@
 <?php
     include './inc/func/func_db.php';
-
+    
     function getPoles(){
         $sql = "SELECT * FROM `tbl_poles`;";
         $conxn = openDB();
@@ -54,7 +54,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./inc/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-    <title>Add Pole Installation</title>
+    <title>NTT CableManagementSystemOFC</title>
 </head>
 <body>
     <?php include './inc/temp/temp_header.php'; ?>
@@ -110,5 +110,6 @@
 
     <script src="./inc/js/jquery-3.7.1.min.js"></script>
     <script src="./inc/js/func_mapPoles.js"></script>
+    <script src="./inc/js/func_main.js"></script>
 </body>
 </html>

@@ -23,13 +23,10 @@
                 <input type="text" class="form-control" id="poleLng" value="" disabled>
                 <label for="poleLng">Node Longitude</label>
             </div>
-            <div class="imgs">
-
-            </div>
         </div>
 
         <div class="delbtn" style="">
-            <input type="hidden" name="poleID" value="">
+            <input type="hidden" name="poleID" id="delPoleId" value="">
             <input type="submit" name="subDelID" class="btn btn-danger" style="width: 150px;" value="Delete"/>
         </div>
     </form>
