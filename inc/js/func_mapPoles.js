@@ -11,26 +11,26 @@ map.addLayer(layer)
 
 //* Single Pole Icon
 let customIcon1 = {
-    iconUrl: "./inc/img/ofc-pole3.png",
-    iconSize: [40, 40],
-    iconAnchor: [20,40],
-    popupAnchor: [0,-40]
+    iconUrl: "./inc/img/pole-tag.png",
+    iconSize: [36, 50],
+    iconAnchor: [18,50],
+    popupAnchor: [0,-50]
 }
 
 //* Single Pole Icon With Splitter
 let customIcon2 = {
-    iconUrl: "./inc/img/ofc-pole5.png",
-    iconSize: [40, 40],
-    iconAnchor: [20,40],
-    popupAnchor: [0,-40]
+    iconUrl: "./inc/img/polejbx-tag.png",
+    iconSize: [36, 50],
+    iconAnchor: [18,50],
+    popupAnchor: [0,-50]
 }
 
 //* OLT Icon
 let custOltIcon = {
-    iconUrl: "./inc/img/olt.png",
-    iconSize: [40, 15],
-    iconAnchor: [20,15],
-    popupAnchor: [0,-20]
+    iconUrl: "./inc/img/olt-tag.png",
+    iconSize: [36, 50],
+    iconAnchor: [18,50],
+    popupAnchor: [0,-50]
 }
 
 let myIcon1 = L.icon(customIcon1)
@@ -147,6 +147,12 @@ function plotOlts(olt_Data){
             $('#poleLng').val(`${coordArr[1]}`)
         })
     })
+}
+
+
+function plotLine(){
+    //* Create A Line
+    new L.polyline([[-9.46925,147.20078],[-9.46901,147.20109]], {color: 'red'}).addTo(map)
 }
 
 function mdgVw(){
