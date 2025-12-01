@@ -13,19 +13,15 @@
             </div>
             <div class="form-floating">
                 <input type="text" class="form-control" id="poleZone" value="" disabled>
-                <label for="poleZone">Node Zone</label>
+                <label for="poleZone">Node Zone / PON No.</label>
             </div>
             <div class="form-floating">
-                <input type="text" class="form-control" id="poleLat" value="" disabled>
-                <label for="poleLat">Node Latitude</label>
-            </div>
-            <div class="form-floating">
-                <input type="text" class="form-control" id="poleLng" value="" disabled>
-                <label for="poleLng">Node Longitude</label>
+                <input type="text" class="form-control" id="poleCoords" value="" disabled>
+                <label for="poleCoords">Node Coordinates</label>
             </div>
         </div>
 
-        <div class="delbtn" style="">
+        <div class="delbtn">
             <input type="hidden" name="poleID" id="delPoleId" value="">
             <button class="btn btn-danger" style="width: 150px;" onclick="delPole()">Delete</button>
         </div>
