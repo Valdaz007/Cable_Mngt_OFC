@@ -108,6 +108,13 @@
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>    
 
+    <script>
+        //? Prevent Mouse Right Click On Map
+        document.getElementById('mapCont')
+        .addEventListener('contextmenu', function(event){
+            event.preventDefault()
+        })
+    </script>
     <script src="./inc/js/jquery-3.7.1.min.js"></script>
     <script src="./inc/js/func_mapPoles.js"></script>
     <script src="./inc/js/func_main.js"></script>

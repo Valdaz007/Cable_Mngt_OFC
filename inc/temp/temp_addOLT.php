@@ -1,3 +1,5 @@
+
+
 <form class="add_OLT_Form" action="./inc/func/func_onPremiseNode.php" method="POST" class="p-5">
     <h6>OLT Installation</h6>
     <div class="form-floating mb-2">
@@ -14,6 +16,7 @@
     </div>
 
     <input type="submit" name="addOlt" class="btn btn-primary">
+    <input type="button" value="Close" class="btn btn-warning" onclick="addOLT()">
 </form>
 
 <style>

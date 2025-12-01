@@ -19,6 +19,7 @@
     </div>
 
     <input type="submit" name="submit" class="btn btn-primary">
+    <input type="button" name="" value="Close" class="btn btn-warning" onclick="addJB()">
 </form>
 
 <style>

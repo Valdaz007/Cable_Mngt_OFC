@@ -21,11 +21,12 @@
         <label for="spltr-tray">Tray No.</label>
     </div>
     <div class="form-floating mb-2">
-        <input type="text" name="spltr-desc" class="form-control" id="spltr-tray" placeholder="Splitter Description">
+        <input type="text" name="spltr-desc" class="form-control" id="spltr-desc" placeholder="Splitter Description">
         <label for="spltr-desc">Splitter Description</label>
     </div>
 
     <input type="submit" name="addSpltr" class="btn btn-primary">
+    <input type="button" value="Close" class="btn btn-warning" onclick="addSpltrs()">
 </form>
 
 <style>
@@ -48,7 +49,7 @@
 
 <script defer>
     let addSpltrVw = false
-    function addSpltr(){
+    function addSpltrs(){
         if(addSpltrVw==false){
             $('.add_Spltr_Form').css('display', 'block')
             addSpltrVw = true

@@ -13,6 +13,7 @@
         <label for="pole-zone">Pole Zone</label>
     </div>
     <button class="btn btn-primary" onclick="addPoleDB()">Add Pole</button>
+    <button class="btn btn-warning" onclick="addPole()">Close</button>
 </div>
 
 <style>
