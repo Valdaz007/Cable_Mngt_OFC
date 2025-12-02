@@ -1,6 +1,7 @@
 <div class="poleView" id="poleVw">
     <div class="backBtn">
         <button class="btn btn-sm btn-warning" style="text-decoration: none;" onclick="closePoleVw()"><span>>></span>Close</button>
+        <button class="btn btn-sm btn-warning" onclick="addJB()">Add Enclosure</button>
     </div>
     <div class="subHead">
         
@@ -47,6 +48,8 @@
 
     .poleView .backBtn {
         margin-bottom: 2rem;
+        display: flex;
+        justify-content: space-between;
     }
 
     .poleView .subHead {
@@ -88,6 +91,7 @@
             },
             cache: false,
             success: function(data){
+                console.log(data)
                 if(data){
                     markers[markerId].remove(map)
                 }

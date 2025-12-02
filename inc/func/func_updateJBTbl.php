@@ -7,9 +7,12 @@
                 VALUES (NULL, '".$_POST['jb_desc']."', '".$_POST['poleID']."')";
 
         $rx = mysqli_query($conxn, $sql);
-        mysqli_close($conxn);
 
         if($rx){
+            $sql = "UPDATE `tbl_poles` SET `pole_jb` = '1' WHERE `tbl_poles`.`pole_id` = '".$_POST['poleID']."'";
+            mysqli_query($conxn, $sql);
+            mysqli_close($conxn);
+
             header("location: ./../../cmsofc.php?jb=true"); 
         }
         else {

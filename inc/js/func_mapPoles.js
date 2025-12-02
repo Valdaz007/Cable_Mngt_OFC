@@ -84,6 +84,8 @@ function plotPoles(pole_Data){
             $('#poleZone').val(`${i[3]}`)
             $('#poleCoords').val(`${i[1]}, ${i[2]}`)
             $('#delPoleId').val(`${i[0]}`)
+            $('#jbpole-id').val(`${i[0]}`)
+            $('#jbpole-id').text(`${i[3]}-${i[0]}`)
         })
     })
 }
@@ -118,6 +120,8 @@ function plotPole(id, lat, lng, zon){
         $('#poleZone').val(`${zon}`)
         $('#poleCoords').val(`${coordArr[0]}, ${coordArr[1]}`)
         $('#delPoleId').val(`${id}`)
+        $('#jbpole-id').val(`${i[0]}`)
+        $('#jbpole-id').text(`${i[0]}-${i[3]}`)
     })
 }
 
