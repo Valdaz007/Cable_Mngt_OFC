@@ -1,41 +1,111 @@
+//* Map View Center Coordinates & Zoom
 let mapOptions = {
     center: [-9.45142, 147.19585],
     zoom: 14
 }
 
+//* Initialize Map Element
 let map = new L.map('mapCont', mapOptions)
 let layer = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
 map.addLayer(layer)
 
-let customIcon = {
-    iconUrl: "./inc/img/ofc-pole3.png",
-    iconSize: [40, 40],
-    iconAnchor: [20,40],
-    popupAnchor: [0,-40]
+//* Single Pole Icon
+let customIcon1 = {
+    iconUrl: "./inc/img/pole-tag.png",
+    iconSize: [36, 50],
+    iconAnchor: [18,50],
+    popupAnchor: [0,-50]
 }
 
-let myIcon = L.icon(customIcon)
+//* Single Pole Icon With Splitter
+let customIcon2 = {
+    iconUrl: "./inc/img/polejbx-tag.png",
+    iconSize: [36, 50],
+    iconAnchor: [18,50],
+    popupAnchor: [0,-50]
+}
+
+//* OLT Icon
+let custOltIcon = {
+    iconUrl: "./inc/img/olt-tag.png",
+    iconSize: [36, 50],
+    iconAnchor: [18,50],
+    popupAnchor: [0,-50]
+}
+
+let myIcon1 = L.icon(customIcon1)
+let myIcon2 = L.icon(customIcon2)
+let oltIcon = L.icon(custOltIcon)
 
 let iconOptions = {
-    icon: myIcon
+    icon: ''
 }
 
-//? Pull In Pole Coordinates & Add Marker to Map
-let poles = $('#polesData').attr('data-poles')
-poles = JSON.parse(poles)
+//* Marker Collection Variable
+markers = {}
 
-poles.forEach((i, idx)=>{
-    //? Add Marker to Map
-    new L.Marker([parseFloat(i[1]), parseFloat(i[2])], iconOptions).addTo(map)
+//? Event to trigger when a location on map is clicked
+
+map.on('click', (event)=>{
+    $('#olt-coords').val(`${event.latlng.lat.toFixed(5)},${event.latlng.lng.toFixed(5)}`)
+    $('#pole-lat').val(event.latlng.lat.toFixed(5))
+    $('#pole-lng').val(event.latlng.lng.toFixed(5))
+})
+
+function plotPoles(pole_Data){
+    pole_Data.forEach((i, idx)=>{
+        //? Add Marker to Map
+        if(i[4]==1)
+            iconOptions.icon = myIcon2
+        else
+            iconOptions.icon = myIcon1
+
+        markers[i[0]] = new L.Marker([parseFloat(i[1]), parseFloat(i[2])], iconOptions).addTo(map)
+        
+        //? Add PopUp Content
+        .on("mouseover", event => {
+            event.target.bindPopup(`
+                <div id="polePopup">
+                    <p>ID: ${i[0]}</p>
+                    <p>Lat: ${parseFloat(i[1])}</p>
+                    <p>Lng: ${parseFloat(i[2])}</p>
+                    <p>Zone: ${i[3]}</p>
+                </div>`, {'closeButton': false})
+            .openPopup()
+        })
+
+        .on("mouseout", event => {
+            event.target.closePopup()
+        })
+        
+        .on("click", event => {
+            $('.poleView').css('transform', 'translateX(-200px)')
+            $('#poleID').val(`${i[0]}`)
+            $('#poleZone').val(`${i[3]}`)
+            $('#poleCoords').val(`${i[1]}, ${i[2]}`)
+            $('#delPoleId').val(`${i[0]}`)
+            $('#jbpole-id').val(`${i[0]}`)
+            $('#jbpole-id').text(`${i[3]}-${i[0]}`)
+        })
+    })
+}
+
+function plotPole(id, lat, lng, zon){
+    if(id==1)
+        iconOptions.icon = myIcon2
+    else
+        iconOptions.icon = myIcon1
+
+    markers[id] = new L.Marker([parseFloat(lat), parseFloat(lng)], iconOptions).addTo(map)
     
     //? Add PopUp Content
     .on("mouseover", event => {
         event.target.bindPopup(`
             <div id="polePopup">
-                <p>ID: ${i[0]}</p>
-                <p>Lat: ${parseFloat(i[1])}</p>
-                <p>Lng: ${parseFloat(i[2])}</p>
-                <p>Zone: ${i[3]}</p>
+                <p>ID: ${id}</p>
+                <p>Lat: ${parseFloat(lat)}</p>
+                <p>Lng: ${parseFloat(lng)}</p>
+                <p>Zone: ${zon}</p>
             </div>`, {'closeButton': false})
         .openPopup()
     })
@@ -45,15 +115,46 @@ poles.forEach((i, idx)=>{
     })
     
     .on("click", event => {
-        $('#mapCont').load('./inc/temp/temp_poleView.php', {'poleId': `${i[0]}`})
+        $('.poleView').css('transform', 'translateX(-200px)')
+        $('#poleID').val(`${id}`)
+        $('#poleZone').val(`${zon}`)
+        $('#poleCoords').val(`${coordArr[0]}, ${coordArr[1]}`)
+        $('#delPoleId').val(`${id}`)
+        $('#jbpole-id').val(`${i[0]}`)
+        $('#jbpole-id').text(`${i[0]}-${i[3]}`)
     })
-})
+}
 
-//? Event to trigger when a location on map is clicked
-map.on('click', (event)=>{
-    $('#pole-lat').val(event.latlng.lat.toFixed(5))
-    $('#pole-lng').val(event.latlng.lng.toFixed(5))
-})
+function plotOlts(olt_Data){
+    olt_Data.forEach((i, idx)=>{
+        let coordArr = i[3].split(',')
+        new L.Marker([coordArr[0],coordArr[1]], iconOptions).addTo(map)
+
+        .on("mouseover", event => {
+            event.target.bindPopup(`
+                <div id="polePopup">
+                    <p>ID: ${i[0]}</p>
+                    <p>Lat: ${coordArr[0]}</p>
+                    <p>Lng: ${coordArr[1]}</p>
+                    <p>Zone: ${i[1]}</p>
+                </div>`, {'closeButton': false})
+            .openPopup()
+        })
+
+        .on('click', event =>{
+            $('.poleView').css('transform', 'translateX(-200px)')
+            $('#poleID').val(`${i[0]}`)
+            $('#poleZone').val(`${i[1]}`)
+            $('#poleCoords').val(`${coordArr[0]}, ${coordArr[1]}`)
+        })
+    })
+}
+
+
+function plotLine(){
+    //* Create A Line
+    new L.polyline([[-9.46925,147.20078],[-9.46901,147.20109]], {color: 'red'}).addTo(map)
+}
 
 function mdgVw(){
     map.setView([-5.21874, 145.80520])
