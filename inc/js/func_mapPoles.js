@@ -4,7 +4,7 @@ let mapOptions = {
     zoom: 14
 }
 
-//* Custom Map Icons
+//* Initialize Map Element
 let map = new L.map('mapCont', mapOptions)
 let layer = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
 map.addLayer(layer)
