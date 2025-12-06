@@ -1,4 +1,4 @@
-<div class="add_Pole_Form p-5" id="addPoleForm">
+<div class="add_Pole_Form" id="addPoleForm">
     <h6>Pole Installation</h6>
     <div class="form-floating">
         <input type="text" name="coordx" class="form-control mb-2" id="pole-lat" placeholder="Enter Pole Latitude">
