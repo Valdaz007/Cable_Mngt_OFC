@@ -50,6 +50,10 @@ map.on('click', (event)=>{
     $('#olt-coords').val(`${event.latlng.lat.toFixed(5)},${event.latlng.lng.toFixed(5)}`)
     $('#pole-lat').val(event.latlng.lat.toFixed(5))
     $('#pole-lng').val(event.latlng.lng.toFixed(5))
+    if(poleVw==true){ 
+        $('.poleView').css('transform', 'translateX(400px)')
+        poleVw = false
+    }
 })
 
 function plotPoles(pole_Data){
@@ -86,6 +90,8 @@ function plotPoles(pole_Data){
             $('#delPoleId').val(`${i[0]}`)
             $('#jbpole-id').val(`${i[0]}`)
             $('#jbpole-id').text(`${i[3]}-${i[0]}`)
+            poleVw = true
+            $('.poleView').css('transform', 'translateX(-200px)')
         })
     })
 }
@@ -115,6 +121,7 @@ function plotPole(id, lat, lng, zon){
     })
     
     .on("click", event => {
+        poleVw = true
         $('.poleView').css('transform', 'translateX(-200px)')
         $('#poleID').val(`${id}`)
         $('#poleZone').val(`${zon}`)

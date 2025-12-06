@@ -18,7 +18,7 @@
             </div>
             <div class="form-floating">
                 <input type="text" class="form-control" id="poleCoords" value="" disabled>
-                <label for="poleCoords">Node Coordinates</label>
+                <label for="poleCoords">Coordinates</label>
             </div>
         </div>
 
@@ -77,8 +77,10 @@
 </style>
 
 <script defer>
+    poleVw = false
     function closePoleVw(){
         $('.poleView').css('transform', 'translateX(400px)')
+        poleVw = false
     }
 
     function delPole(){
