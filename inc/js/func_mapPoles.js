@@ -50,11 +50,15 @@ map.on('click', (event)=>{
     $('#olt-coords').val(`${event.latlng.lat.toFixed(5)},${event.latlng.lng.toFixed(5)}`)
     $('#pole-lat').val(event.latlng.lat.toFixed(5))
     $('#pole-lng').val(event.latlng.lng.toFixed(5))
+    closeTempVwOnMapClick()
+})
+
+function closeTempVwOnMapClick(){
     if(poleVw==true){ 
         $('.poleView').css('transform', 'translateX(400px)')
         poleVw = false
     }
-})
+}
 
 function plotPoles(pole_Data){
     pole_Data.forEach((i, idx)=>{
