@@ -52,9 +52,10 @@ map.on('click', (event)=>{
 })
 
 function closeTempVwOnMapClick(){
-    if(poleVw==true){ 
+    if(poleVw){
         $('.poleView').css('transform', 'translateX(400px)')
         poleVw = false
+        closeJBVw()
     }
 }
 
@@ -85,7 +86,6 @@ function plotPoles(pole_Data){
         })
         
         .on("click", event => {
-            $('.poleView').css('transform', 'translateX(-200px)')
             $('#poleID').val(`${i[0]}`)
             $('#poleZone').val(`${i[3]}`)
             $('#poleCoords').val(`${i[1]}, ${i[2]}`)
@@ -94,7 +94,8 @@ function plotPoles(pole_Data){
             $('#jbpole-id').text(`${i[3]}-${i[0]}`)
             poleVw = true
             $('.poleView').css('transform', 'translateX(-200px)')
-            $('.jbView').css('transform', 'translateX(-400px)')
+            closeJBVw()
+            $('.nodeHead').text('Pole Info')
             $('.jbCont').empty()
             i[4]==1 && poleVwJBs(i[0])
         })
@@ -119,10 +120,13 @@ function plotOlts(olt_Data){
 
         .on('click', event =>{
             $('.poleView').css('transform', 'translateX(-200px)')
+            poleVw=true
+            closeJBVw()
             $('#poleID').val(`${i[0]}`)
             $('#poleZone').val(`${i[1]}`)
             $('#poleCoords').val(`${coordArr[0]}, ${coordArr[1]}`)
             $('.jbCont').empty()
+            $('.nodeHead').text('OLT Info')
         })
     })
 }

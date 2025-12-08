@@ -93,7 +93,7 @@
     function lsSpltrs(data){
         $('.spltr-body').append('<ul class="spltrList"></ul>')
         data.forEach((i, idx)=>{
-            $('.spltrList').append(`<li>ID: ${i[0]} | Tray: ${i[1]}</li>`)
+            $('.spltrList').append(`<li>ID: ${i[0]} | Ratio: ${i[1]} | Tray: ${i[2]}</li>`)
         })
     }
 </script>

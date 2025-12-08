@@ -1,12 +1,12 @@
 <div class="poleView" id="poleVw">
     <div class="backBtn">
-        <button class="btn btn-sm btn-warning" style="text-decoration: none;" onclick="closePoleVw()"><span>>></span>Close</button>
         <button class="btn btn-sm btn-warning" onclick="addJB()">Add Enclosure</button>
+        <button class="btn btn-sm btn-warning" style="text-decoration: none;" onclick="closePoleVw()"><span>>></span>Close</button>
     </div>
     <div class="subHead">
-        
         <input type="hidden" id="poleData" data-pole="">
         <div>
+            <h5 class="nodeHead" style="font-family: oswald;"></h5>
             <div class="form-floating">
                 <input type="text" class="form-control" id="poleID" value="" disabled>
                 <label for="poleID">Node ID</label>
@@ -15,7 +15,7 @@
                 <input type="text" class="form-control" id="poleZone" value="" disabled>
                 <label for="poleZone">Node Zone / PON No.</label>
             </div>
-            <div class="form-floating">
+            <div class="form-floating mb-2">
                 <input type="text" class="form-control" id="poleCoords" value="" disabled>
                 <label for="poleCoords">Coordinates</label>
             </div>
@@ -24,7 +24,7 @@
 
         <div class="delbtn">
             <input type="hidden" name="poleID" id="delPoleId" value="">
-            <button class="btn btn-danger" style="width: 150px;" onclick="delPole()">Delete</button>
+            <button class="btn btn-sm btn-danger" style="width: 150px;" onclick="delPole()">Delete</button>
         </div>
     </div>
 </div>
@@ -102,21 +102,23 @@
     }
 
     function delPole(){
-        markerId = $('#delPoleId').val()
-        $.ajax({
-            type: 'POST',
-            url: './inc/func/func_updatePoleTbl.php',
-            data: {
-                subDelID: markerId
-            },
-            cache: false,
-            success: function(data){
-                console.log(data)
-                if(data){
-                    markers[markerId].remove(map)
-                }
-            },
-            error: (xhr, status, error)=>{ console.log(xhr) }
-        })
+        if(confirm('Are You Sure You Want To Delete Junction Box!')){
+            markerId = $('#delPoleId').val()
+            $.ajax({
+                type: 'POST',
+                url: './inc/func/func_updatePoleTbl.php',
+                data: {
+                    subDelID: markerId
+                },
+                cache: false,
+                success: function(data){
+                    console.log(data)
+                    if(data){
+                        markers[markerId].remove(map)
+                    }
+                },
+                error: (xhr, status, error)=>{ console.log(xhr) }
+            })
+        }
     }
 </script>
