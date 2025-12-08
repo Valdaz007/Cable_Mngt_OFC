@@ -121,6 +121,7 @@ function plotOlts(olt_Data){
             $('#poleID').val(`${i[0]}`)
             $('#poleZone').val(`${i[1]}`)
             $('#poleCoords').val(`${coordArr[0]}, ${coordArr[1]}`)
+            $('.jbCont').empty()
         })
     })
 }
