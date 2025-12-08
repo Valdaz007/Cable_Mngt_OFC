@@ -25,6 +25,11 @@
         addSpltr($_POST['spltr-ratio'], $_POST['spltr-tray'], $_POST['spltr-desc'], $_POST['jbID']);
     }
 
+    if(isset($_POST['getSpltr'])){
+        getJBSpltr($_POST['getSpltr']);
+        exit();
+    }
+
     function addSpltr($ratio, $tray, $desc, $jbID){
         $conxn = openDB();
         $spltrID = uniqid('spl');
@@ -38,5 +43,18 @@
         }
         else {
             echo $rx;
+        }
+    }
+
+    function getJBSpltr($jbId){
+        $conn = openDB();
+        $sql = "SELECT * FROM `tbl_splitter` WHERE `jb_id`=$jbId;";
+        $rx = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+        if(mysqli_num_rows($rx)>0){
+            echo json_encode(mysqli_fetch_all($rx));
+        }
+        else {
+            echo false;
         }
     }

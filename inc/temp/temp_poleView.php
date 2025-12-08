@@ -94,12 +94,11 @@
 
 <script defer>
     poleVw = false
-    jbVw = false
 
     function closePoleVw(){
         $('.poleView').css('transform', 'translateX(200px)')
         poleVw = false
-        openJBVw()
+        closeJBVw()
     }
 
     function delPole(){
@@ -119,17 +118,5 @@
             },
             error: (xhr, status, error)=>{ console.log(xhr) }
         })
-    }
-
-    function openJBVw(){
-        if(!jbVw && poleVw){
-            $('.jbView').css('transform', 'translateX(-800px)')
-            jbVw = true
-        }
-        else {
-            poleVw && $('.jbView').css('transform', 'translateX(-400px)')
-            !poleVw && $('.jbView').css('transform', 'translateX(200px)')
-            jbVw = false
-        }
     }
 </script>

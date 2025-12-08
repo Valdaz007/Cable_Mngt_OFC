@@ -132,7 +132,7 @@ function poleVwJBs(poleId){
     jbs.forEach((i, idx)=>{
         if(i[2]==poleId){
             $('.jbCont').append(
-                `<button class='jb${i[0]} btn btn-sm btn-primary' onclick='openJBVw()'>${i[1]}</button>`
+                `<button class='jb${i[0]} btn btn-sm btn-primary' onclick='openJBVw(${i[0]})'>${i[1]}</button>`
             )
         }
     })
