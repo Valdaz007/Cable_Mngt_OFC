@@ -94,6 +94,7 @@ function plotPoles(pole_Data){
             $('#jbpole-id').text(`${i[3]}-${i[0]}`)
             poleVw = true
             $('.poleView').css('transform', 'translateX(-200px)')
+            $('.jbView').css('transform', 'translateX(-400px)')
             $('.jbCont').empty()
             i[4]==1 && poleVwJBs(i[0])
         })
@@ -131,7 +132,7 @@ function poleVwJBs(poleId){
     jbs.forEach((i, idx)=>{
         if(i[2]==poleId){
             $('.jbCont').append(
-                `<button class='jb${i[0]} btn btn-sm btn-primary'>${i[1]}</button>`
+                `<button class='jb${i[0]} btn btn-sm btn-primary' onclick='openJBVw()'>${i[1]}</button>`
             )
         }
     })

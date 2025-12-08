@@ -95,6 +95,7 @@
         <div id="mapCont">
         </div>
         <?php include './inc/temp/temp_poleView.php'; ?>
+        <?php include './inc/temp/temp_JBView.php'; ?>
         <?php include './inc/temp/temp_sideMenuBar.php'; ?>
 
         <!-- Modals Elements -->

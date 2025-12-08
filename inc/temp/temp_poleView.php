@@ -34,7 +34,7 @@
         display: block;
         height: 100%;
         width: 400px;
-        transform: translateX(400px);
+        transform: translateX(200px);
         padding: 1rem 1rem 2rem 1rem;
 
         position: absolute;
@@ -94,9 +94,12 @@
 
 <script defer>
     poleVw = false
+    jbVw = false
+
     function closePoleVw(){
-        $('.poleView').css('transform', 'translateX(400px)')
+        $('.poleView').css('transform', 'translateX(200px)')
         poleVw = false
+        openJBVw()
     }
 
     function delPole(){
@@ -116,5 +119,17 @@
             },
             error: (xhr, status, error)=>{ console.log(xhr) }
         })
+    }
+
+    function openJBVw(){
+        if(!jbVw && poleVw){
+            $('.jbView').css('transform', 'translateX(-800px)')
+            jbVw = true
+        }
+        else {
+            poleVw && $('.jbView').css('transform', 'translateX(-400px)')
+            !poleVw && $('.jbView').css('transform', 'translateX(200px)')
+            jbVw = false
+        }
     }
 </script>
