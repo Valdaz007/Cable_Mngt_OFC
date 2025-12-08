@@ -1,7 +1,8 @@
 //* Map View Center Coordinates & Zoom
 let mapOptions = {
-    center: [-9.45142, 147.19585],
-    zoom: 14
+    // center: [-9.45142, 147.19585], //?POM Center
+    center: [-9.46852, 147.20168],
+    zoom: 20
 }
 
 //* Initialize Map Element
@@ -37,15 +38,12 @@ let myIcon1 = L.icon(customIcon1)
 let myIcon2 = L.icon(customIcon2)
 let oltIcon = L.icon(custOltIcon)
 
-let iconOptions = {
-    icon: ''
-}
+let iconOptions = { icon: '' }
 
 //* Marker Collection Variable
 markers = {}
 
 //? Event to trigger when a location on map is clicked
-
 map.on('click', (event)=>{
     $('#olt-coords').val(`${event.latlng.lat.toFixed(5)},${event.latlng.lng.toFixed(5)}`)
     $('#pole-lat').val(event.latlng.lat.toFixed(5))
@@ -96,43 +94,9 @@ function plotPoles(pole_Data){
             $('#jbpole-id').text(`${i[3]}-${i[0]}`)
             poleVw = true
             $('.poleView').css('transform', 'translateX(-200px)')
+            $('.jbCont').empty()
+            i[4]==1 && poleVwJBs(i[0])
         })
-    })
-}
-
-function plotPole(id, lat, lng, zon){
-    if(id==1)
-        iconOptions.icon = myIcon2
-    else
-        iconOptions.icon = myIcon1
-
-    markers[id] = new L.Marker([parseFloat(lat), parseFloat(lng)], iconOptions).addTo(map)
-    
-    //? Add PopUp Content
-    .on("mouseover", event => {
-        event.target.bindPopup(`
-            <div id="polePopup">
-                <p>ID: ${id}</p>
-                <p>Lat: ${parseFloat(lat)}</p>
-                <p>Lng: ${parseFloat(lng)}</p>
-                <p>Zone: ${zon}</p>
-            </div>`, {'closeButton': false})
-        .openPopup()
-    })
-
-    .on("mouseout", event => {
-        event.target.closePopup()
-    })
-    
-    .on("click", event => {
-        poleVw = true
-        $('.poleView').css('transform', 'translateX(-200px)')
-        $('#poleID').val(`${id}`)
-        $('#poleZone').val(`${zon}`)
-        $('#poleCoords').val(`${coordArr[0]}, ${coordArr[1]}`)
-        $('#delPoleId').val(`${id}`)
-        $('#jbpole-id').val(`${i[0]}`)
-        $('#jbpole-id').text(`${i[0]}-${i[3]}`)
     })
 }
 
@@ -161,6 +125,16 @@ function plotOlts(olt_Data){
     })
 }
 
+function poleVwJBs(poleId){
+    $('.jbCont').append('<h5>Junction Box</h5>')                                                   
+    jbs.forEach((i, idx)=>{
+        if(i[2]==poleId){
+            $('.jbCont').append(
+                `<button class='jb${i[0]} btn btn-sm btn-primary'>${i[1]}</button>`
+            )
+        }
+    })
+}
 
 function plotLine(){
     //* Create A Line

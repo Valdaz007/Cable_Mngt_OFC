@@ -6,7 +6,6 @@
     <div class="subHead">
         
         <input type="hidden" id="poleData" data-pole="">
-        
         <div>
             <div class="form-floating">
                 <input type="text" class="form-control" id="poleID" value="" disabled>
@@ -20,6 +19,7 @@
                 <input type="text" class="form-control" id="poleCoords" value="" disabled>
                 <label for="poleCoords">Coordinates</label>
             </div>
+            <section class="jbCont"></section>
         </div>
 
         <div class="delbtn">
@@ -72,6 +72,22 @@
         .delbtn {
             display: flex; 
             justify-content: center;
+        }
+    }
+
+    .jbCont {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+
+        & h5 {
+            width: 350px;
+            margin: 0;
+            font-family: oswald;
+        }
+        
+        & button {
+            width: calc(50% - .5rem);
         }
     }
 </style>

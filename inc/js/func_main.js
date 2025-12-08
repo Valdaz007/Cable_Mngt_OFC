@@ -5,6 +5,9 @@ poles = JSON.parse(poles)
 let olts = $('#oltsData').attr('data-olts')
 olts = JSON.parse(olts)
 
+let jbs = $('#jbsData').attr('data-jbs')
+jbs = JSON.parse(jbs)
+
 //* Set Custom Marker Icon (Pole)
 iconOptions.icon = myIcon1
 
