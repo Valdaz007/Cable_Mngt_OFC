@@ -1,9 +1,13 @@
 <div class="jbView">
     <input id='spltrData' type="hidden" spltr-data=''>
-    <div class='spltr-head'>
+    <div class='spltr-head mb-2'>
         <h5>Junction Box Splitters</h5>
-        <button class="btn btn-sm btn-warning" onclick="closeJBVw()">Close</button>
+        <div>
+            <button id="addSpltrBtn" class="btn btn-sm btn-info">Add Splitter</button>
+            <button class="btn btn-sm btn-warning" onclick="closeJBVw()">>>Close</button>
+        </div>
     </div>
+    <hr>
     <div class="spltr-body"></div>
 </div>
 
@@ -26,11 +30,11 @@
     .spltr-head {
         display: flex;
         justify-content: space-between;
-
-        margin: 0 0 10px 0;
+        align-items: center;
 
         & h5 {
             font-family: oswald;
+            margin: 0;
         }
     }
 
@@ -57,6 +61,7 @@
             $('.jbView').css('transform', 'translateX(-800px)')
             jbVw = true
             get_spltrs_data(jbId)
+            $('#addSpltrBtn').attr('onclick', `addSpltrs(${jbId})`)
         }
     }
 
@@ -91,9 +96,27 @@
     }
 
     function lsSpltrs(data){
-        $('.spltr-body').append('<ul class="spltrList"></ul>')
+        $('.spltr-body').append(`   
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Ratio</th>
+                    <th scope="col">Tray</th>
+                </tr>
+            </thead>
+            <tbody class="spltrList">
+
+            </tbody>
+        </table>`)
+
         data.forEach((i, idx)=>{
-            $('.spltrList').append(`<li>ID: ${i[0]} | Ratio: ${i[1]} | Tray: ${i[2]}</li>`)
+            $('.spltrList').append(`
+            <tr>
+                <th scope="row">${i[0]}</th>
+                <td>${i[1]}</td>
+                <td>${i[2]}</td>
+            </tr>`)
         })
     }
 </script>
