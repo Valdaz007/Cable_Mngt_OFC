@@ -10,6 +10,9 @@
     elseif(isset($_POST['getPole'])){
         getPole();
     }
+    elseif(isset($_POST['getPolesData'])){
+        echo getPoles();
+    }
 
     function delPole($id){
         $conxn = openDB();
@@ -44,5 +47,20 @@
         }
         else {
             echo '!Error: ' . $rx;
+        }
+    }
+    
+    function getPoles(){
+        $sql = "SELECT * FROM `tbl_poles`;";
+        $conxn = openDB();
+
+        $rx = mysqli_query($conxn, $sql);
+        mysqli_close($conxn);
+
+        if(mysqli_num_rows($rx) > 0){
+            return json_encode(mysqli_fetch_all($rx));
+        }
+        else {
+            return false;
         }
     }

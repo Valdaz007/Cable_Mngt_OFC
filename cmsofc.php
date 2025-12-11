@@ -1,20 +1,5 @@
 <?php
     include './inc/func/func_db.php';
-    
-    function getPoles(){
-        $sql = "SELECT * FROM `tbl_poles`;";
-        $conxn = openDB();
-
-        $rx = mysqli_query($conxn, $sql);
-        mysqli_close($conxn);
-
-        if(mysqli_num_rows($rx) > 0){
-            return $rx;
-        }
-        else {
-            return 'Error';
-        }
-    }
 
     function getJBs(){
         $sql = "SELECT * FROM `tbl_junction-boxes`;";
@@ -105,7 +90,7 @@
         <?php include './inc/temp/temp_addOLT.php'; ?>
     </main>
 
-    <input id="polesData" type="hidden" style="display:none;" data-poles='<?php echo json_encode(mysqli_fetch_all(getPoles())); ?>'>
+    <input id="polesData" type="hidden" style="display:none;" data-poles>
     <input id="oltsData" type="hidden" style="display:none;" data-olts='<?php echo json_encode(mysqli_fetch_all(getOLTs())); ?>'>
     <input id="jbsData" type="hidden" style="display:none;" data-jbs='<?php echo json_encode(mysqli_fetch_all(getJBs())); ?>'>
 
@@ -121,4 +106,20 @@
     <script defer src="./inc/js/func_map.js"></script>
     <script defer src="./inc/js/func_main.js"></script>
 </body>
+
+<script>
+    function getPolesData(){
+        $.ajax({
+            type: 'POST',
+            url: './inc/func/func_updatePoleTbl.php',
+            cache: false,
+            data: { getPolesData: true },
+            success: function(data){
+                $('#polesData').attr('data-poles', data)
+            },
+            error: (error, status, xhr)=>{console.log(xhr)}
+        })
+    }
+    getPolesData()
+</script>
 </html>

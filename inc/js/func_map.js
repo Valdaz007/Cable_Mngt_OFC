@@ -102,6 +102,39 @@ function plotPoles(pole_Data){
     })
 }
 
+function plotPole(id, lat, lng, zon){
+    if(id==1)
+        iconOptions.icon = myIcon2
+    else
+        iconOptions.icon = myIcon1
+
+    markers[id] = new L.Marker([parseFloat(lat), parseFloat(lng)], iconOptions).addTo(map)
+    
+    //? Add PopUp Content
+    .on("mouseover", event => {
+        event.target.bindPopup(`
+            <div id="polePopup">
+                <p>ID: ${id}</p>
+                <p>Lat: ${parseFloat(lat)}</p>
+                <p>Lng: ${parseFloat(lng)}</p>
+                <p>Zone: ${zon}</p>
+            </div>`, {'closeButton': false})
+        .openPopup()
+    })
+        .on("mouseout", event => {
+        event.target.closePopup()
+    })
+    
+    .on("click", event => {
+        poleVw = true
+        $('.poleView').css('transform', 'translateX(-200px)')
+        $('#poleID').val(`${id}`)
+        $('#poleZone').val(`${zon}`)
+        $('#poleCoords').val(`${lat}, ${lng}`)
+        $('#delPoleId').val(`${id}`)
+    })
+}
+
 function plotOlts(olt_Data){
     olt_Data.forEach((i, idx)=>{
         let coordArr = i[3].split(',')
