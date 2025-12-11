@@ -102,7 +102,7 @@
     }
 
     function delPole(){
-        if(confirm('Are You Sure You Want To Delete Junction Box!')){
+        if(confirm('Are You Sure You Want To Delete Pole!')){
             markerId = $('#delPoleId').val()
             $.ajax({
                 type: 'POST',
