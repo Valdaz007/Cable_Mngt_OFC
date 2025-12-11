@@ -75,6 +75,7 @@
                 cache: false,
                 success: function(data){
                     if(data){
+
                         resolve(data)
                     }
                     else{
@@ -98,6 +99,7 @@
                 success: function(data){
                     if(data){
                         data = JSON.parse(data)
+                        addPole()
                         plotPole(data['pole_id'],data['pole_latitude'],data['pole_longitude'],data['pole_zone'])
                         resolve(data)
                     }
