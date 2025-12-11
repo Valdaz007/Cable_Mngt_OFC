@@ -115,6 +115,7 @@
                     console.log(data)
                     if(data){
                         markers[markerId].remove(map)
+                        closePoleVw()
                     }
                 },
                 error: (xhr, status, error)=>{ console.log(xhr) }
