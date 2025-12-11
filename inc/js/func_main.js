@@ -1,21 +1,13 @@
-//* Get Plot Data From DOM
-let poles = $('#polesData').attr('data-poles')
-poles = JSON.parse(poles)
-
-let olts = $('#oltsData').attr('data-olts')
-olts = JSON.parse(olts)
-
-let jbs = $('#jbsData').attr('data-jbs')
-jbs = JSON.parse(jbs)
+jbs = JSON.parse($('#jbsData').attr('data-jbs'))    //? Ref: func_map.js
 
 //* Set Custom Marker Icon (Pole)
 iconOptions.icon = myIcon1
 
 //* Plot Pole Markers On Map
-plotPoles(poles)
+plotPoles(JSON.parse($('#polesData').attr('data-poles')))
 
 //* Set Custom Marker Icon (OLT)
 iconOptions.icon = oltIcon
 
 //* Plot OLTs Markers On Map
-plotOlts(olts)
+plotOlts(JSON.parse($('#oltsData').attr('data-olts')))
