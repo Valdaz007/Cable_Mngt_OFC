@@ -164,17 +164,6 @@ function plotOlts(olt_Data){
     })
 }
 
-function poleVwJBs(poleId){
-    $('.jbCont').append('<h5>Junction Box</h5>')                                                   
-    jbs.forEach((i, idx)=>{
-        if(i[2]==poleId){
-            $('.jbCont').append(
-                `<button class='jb${i[0]} btn btn-sm btn-primary' onclick='openJBVw(${i[0]})'>${i[1]}</button>`
-            )
-        }
-    })
-}
-
 function plotLine(){
     //* Create A Line
     new L.polyline([[-9.46925,147.20078],[-9.46901,147.20109]], {color: 'red'}).addTo(map)

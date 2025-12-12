@@ -24,7 +24,7 @@
 
         <div class="delbtn">
             <input type="hidden" name="poleID" id="delPoleId" value="">
-            <button class="btn btn-sm btn-danger" style="width: 150px;" onclick="delPole()">Delete</button>
+            <button class="btn btn-sm btn-danger" style="width: 150px;" onclick="delPole()">Delete Pole</button>
         </div>
     </div>
 </div>
@@ -87,7 +87,18 @@
         }
         
         & button {
-            width: calc(50% - .5rem);
+            width: 300px;
+        }
+
+        .delJBBtn {
+            background: none;
+            border: none;
+            width: 35px;
+
+            & img {
+                aspect-ratio: 1;
+                height: 30px;
+            }
         }
     }
 </style>
@@ -121,5 +132,27 @@
                 error: (xhr, status, error)=>{ console.log(xhr) }
             })
         }
+    }
+
+    function poleVwJBs(poleId){
+        $('.jbCont').append('<h5>Junction Box</h5><table class="table jbTblLs"></table>')
+        jbs.forEach((i, idx)=>{
+            if(i[2]==poleId){
+                $('.jbTblLs').append(
+                `<tr class='jbTblRw'>
+                    <td>
+                        <button class='jb${i[0]} btn btn-sm btn-primary' onclick='openJBVw(${i[0]})'>${i[1]}</button>
+                    </td>
+                    <td>
+                        <button class='delJBBtn' onclick=delJuncBox()><img src='./inc/img/delBtn.png'></button>
+                    </td>
+                </tr>`
+                )
+            }
+        })
+    }
+
+    function delJuncBox(){
+        confirm('Are You Sure You Want To Delete Junction Box?')
     }
 </script>
