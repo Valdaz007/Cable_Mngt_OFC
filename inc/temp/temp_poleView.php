@@ -123,10 +123,12 @@
                 },
                 cache: false,
                 success: function(data){
-                    console.log(data)
-                    if(data){
+                    if(data==1){
                         markers[markerId].remove(map)
                         closePoleVw()
+                    }
+                    else{
+                        alert('Error: Fail To Delete Pole!')
                     }
                 },
                 error: (xhr, status, error)=>{ console.log(xhr) }
