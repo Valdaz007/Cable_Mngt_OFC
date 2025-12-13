@@ -241,6 +241,7 @@
             cache: false,
             success: function(data){
                 console.log(data)
+                window.location.reload()
             },
             error:(error,status,xhr)=>{console.log(xhr)}
         })
