@@ -24,7 +24,7 @@
         mysqli_close($conxn);
 
         if(mysqli_num_rows($rx) > 0){
-            return $rx;
+            return json_encode(mysqli_fetch_all($rx));
         }
         else {
             return 'Error';
@@ -107,7 +107,7 @@
 
     <input id="polesData" type="hidden" style="display:none;" data-poles='<?php echo getPoles(); ?>'>
     <input id="oltsData" type="hidden" style="display:none;" data-olts='<?php echo json_encode(mysqli_fetch_all(getOLTs())); ?>'>
-    <input id="jbsData" type="hidden" style="display:none;" data-jbs='<?php echo json_encode(mysqli_fetch_all(getJBs())); ?>'>
+    <input id="jbsData" type="hidden" style="display:none;" data-jbs='<?php echo getJBs(); ?>'>
 
     <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>    
 

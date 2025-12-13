@@ -13,6 +13,9 @@
     elseif(isset($_POST['getPolesData'])){
         echo getPoles();
     }
+    if(isset($_POST['updatePoleJB'])){
+        echo altPoleJB($_POST['updatePoleJB'], $_POST['value']);
+    }
 
     function delPole($id){
         $conxn = openDB();
@@ -63,4 +66,12 @@
         else {
             return false;
         }
+    }
+
+    function altPoleJB($polId, $value){
+        $sql = "UPDATE `tbl_poles` SET `pole_jb`=$value WHERE `pole_id`=$polId;";
+        $conn = openDB();
+        $rx = mysqli_query($conn, $sql);
+        mysqli_close($conn);
+        return $rx;
     }

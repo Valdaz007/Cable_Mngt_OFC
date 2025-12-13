@@ -1,7 +1,7 @@
 <?php
     include './func_db.php';
 
-    if(isset($_POST['submit'])){
+    if(isset($_POST['submit'])){  //? Add Junction Box
         $conxn = openDB();
         $sql = "INSERT INTO `tbl_junction-boxes` (`jb_id`, `jb_desc`, `pole_id`)
                 VALUES (NULL, '".$_POST['jb_desc']."', '".$_POST['poleID']."')";
@@ -19,6 +19,23 @@
             echo $rx;
         }
     }
+    if(isset($_POST['delJB'])){
+        if(delJunctionBox($_POST['delJB'])==1){
+            echo '{"delJb":1}';
+        }
+        else {
+            echo '{"delJB":0}';
+        }
+        exit();
+    }
+    if(isset($_POST['getJBs'])){
+        echo getJunctionBoxes();
+        exit();
+    }
+    if(isset($_POST['getPoleJbs'])){
+        echo getPole_JunctionBoxesCount($_POST['getPoleJbs']);
+        exit();
+    }
 
     //? ADD SPLITTER TO DB
     if(isset($_POST['addSpltr'])){
@@ -28,6 +45,45 @@
     if(isset($_POST['getSpltr'])){
         getJBSpltr($_POST['getSpltr']);
         exit();
+    }
+
+    function delJunctionBox($jbId){
+        $conxn = openDB();
+        $sql = "DELETE FROM `tbl_junction-boxes` WHERE `jb_id` = $jbId;";
+
+        $rx = mysqli_query($conxn, $sql);
+        mysqli_close($conxn);
+
+        return $rx;
+    }
+
+    //*** GET ALL JUNCTION BOXES
+    function getJunctionBoxes(){
+        $sql = "SELECT * FROM `tbl_junction-boxes`;";
+
+        $conxn = openDB();
+
+        $rx = mysqli_query($conxn, $sql);
+        mysqli_close($conxn);
+
+        if(mysqli_num_rows($rx) > 0){
+            return json_encode(mysqli_fetch_all($rx));
+        }
+        else {
+            return 0;
+        }
+    }
+
+    //*** GET JUNCTION BOXES ON SPECIFIED POLE
+    function getPole_JunctionBoxesCount($poleId){
+        $sql = "SELECT * FROM `tbl_junction-boxes` WHERE `pole_id`=$poleId;";
+
+        $conxn = openDB();
+
+        $rx = mysqli_query($conxn, $sql);
+        mysqli_close($conxn);
+
+        return mysqli_num_rows($rx);
     }
 
     function addSpltr($ratio, $tray, $desc, $jbID){
