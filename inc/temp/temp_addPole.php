@@ -56,9 +56,7 @@
 
     async function addPoleDB(){
         let rx = await addPoleBE()
-        console.log(rx)
         rx = await getPoleBE()
-        console.log(rx)
     }
 
     function addPoleBE(){
@@ -75,7 +73,6 @@
                 cache: false,
                 success: function(data){
                     if(data){
-
                         resolve(data)
                     }
                     else{
