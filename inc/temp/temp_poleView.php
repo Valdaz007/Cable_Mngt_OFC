@@ -1,12 +1,12 @@
 <div class="poleView" id="poleVw">
     <div class="backBtn">
-        <button class="btn btn-sm btn-warning" onclick="addJB()">Add Enclosure</button>
+        <h5 class="nodeHead" style="font-family: oswald;"></h5>
         <button class="btn btn-sm btn-warning" style="text-decoration: none;" onclick="closePoleVw()"><span>>></span>Close</button>
     </div>
+    <hr>
     <div class="subHead">
         <input type="hidden" id="poleData" data-pole="">
-        <div>
-            <h5 class="nodeHead" style="font-family: oswald;"></h5>
+        <div class="PoleVwBodyCont">
             <div class="form-floating">
                 <input type="text" class="form-control" id="poleID" value="" disabled>
                 <label for="poleID">Node ID</label>
@@ -15,10 +15,11 @@
                 <input type="text" class="form-control" id="poleZone" value="" disabled>
                 <label for="poleZone">Node Zone / PON No.</label>
             </div>
-            <div class="form-floating mb-2">
+            <div class="form-floating">
                 <input type="text" class="form-control" id="poleCoords" value="" disabled>
                 <label for="poleCoords">Coordinates</label>
             </div>
+            <hr style='margin:.5rem 0;'>
             <section class="jbCont"></section>
         </div>
 
@@ -47,7 +48,6 @@
     }
 
     .poleView .backBtn {
-        margin-bottom: 2rem;
         display: flex;
         justify-content: space-between;
     }
@@ -59,10 +59,10 @@
         gap: 1rem;
         justify-content: space-between;
 
-        & div {
+        .PoleVwBodyCont {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: .5rem;
 
             & .form-floating {
                 width: 100%;
@@ -70,8 +70,7 @@
         }
 
         .delbtn {
-            display: flex; 
-            justify-content: center;
+            display: flex;
         }
     }
 
@@ -80,10 +79,29 @@
         gap: 1rem;
         flex-wrap: wrap;
 
-        & h5 {
-            width: 350px;
-            margin: 0;
-            font-family: oswald;
+        .jbLsHd {
+            width: 100%;
+            display: flex;
+            gap: .2rem;
+            align-items: center;
+
+            #addJBBtn {
+                border: none;
+                width: fit-content;
+
+                & img {
+                    aspect-ratio: 1;
+                    width: 30px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 3px #333;
+                }
+            }
+
+            & h5 {
+                width: fit-content;
+                margin: 0;
+                font-family: oswald;
+            }
         }
         
         & button {
@@ -136,9 +154,17 @@
         }
     }
 
+                // <button class="jbAddBtn btn btn-sm btn-warning" >Add</button>
     function poleVwJBs(poleId){
         jbs = JSON.parse($('#jbsData').attr('data-jbs'))
-        $('.jbCont').append('<h5>Junction Box</h5><table class="table jbTblLs"></table>')
+        $('.jbCont').append(`
+            <div class='jbLsHd'>
+                <h5>Junction Box</h5>
+                <button id="addJBBtn" class="btn" onclick="addJB()"><img src='./inc/img/add.jpg' title="Add JB"></button>
+            </div>
+            <table class="table jbTblLs">
+            </table>
+        `)
         jbs.forEach((i, idx)=>{
             if(i[2]==poleId){
                 $('.jbTblLs').append(
