@@ -97,7 +97,7 @@ function plotPoles(pole_Data){
             closeJBVw()
             $('.nodeHead').text('Pole Info')
             $('.jbCont').empty()
-            i[4]==1 && poleVwJBs(i[0])
+            poleVwJBs(i[0])
         })
     })
 }
