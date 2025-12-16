@@ -154,7 +154,6 @@
         }
     }
 
-                // <button class="jbAddBtn btn btn-sm btn-warning" >Add</button>
     function poleVwJBs(poleId){
         jbs = JSON.parse($('#jbsData').attr('data-jbs'))
         $('.jbCont').append(`

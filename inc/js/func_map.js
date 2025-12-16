@@ -128,6 +128,8 @@ function plotPole(id, lat, lng, zon){
     .on("click", event => {
         poleVw = true
         $('.poleView').css('transform', 'translateX(-200px)')
+        closeJBVw()
+        $('.jbCont').empty()
         $('#poleID').val(`${id}`)
         $('#poleZone').val(`${zon}`)
         $('#poleCoords').val(`${lat}, ${lng}`)
