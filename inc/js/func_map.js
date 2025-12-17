@@ -1,12 +1,12 @@
 //* Map View Center Coordinates & Zoom
-let mapOptions = {
+let mapView = {
     // center: [-9.45142, 147.19585], //?POM Center
     center: [-9.46852, 147.20168],
     zoom: 20
 }
 
 //* Initialize Map Element
-let map = new L.map('mapCont', mapOptions)
+let map = new L.map('mapCont', mapView)
 let layer = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png')
 map.addLayer(layer)
 
@@ -86,18 +86,23 @@ function plotPoles(pole_Data){
         })
         
         .on("click", event => {
-            $('#poleID').val(`${i[0]}`)
-            $('#poleZone').val(`${i[3]}`)
-            $('#poleCoords').val(`${i[1]}, ${i[2]}`)
-            $('#delPoleId').val(`${i[0]}`)
-            $('#jbpole-id').val(`${i[0]}`)
-            $('#jbpole-id').text(`${i[3]}-${i[0]}`)
-            poleVw = true
-            $('.poleView').css('transform', 'translateX(-200px)')
-            closeJBVw()
-            $('.nodeHead').text('Pole Info')
-            $('.jbCont').empty()
-            poleVwJBs(i[0])
+            if(!addCableVw){
+                $('#poleID').val(`${i[0]}`)
+                $('#poleZone').val(`${i[3]}`)
+                $('#poleCoords').val(`${i[1]}, ${i[2]}`)
+                $('#delPoleId').val(`${i[0]}`)
+                $('#jbpole-id').val(`${i[0]}`)
+                $('#jbpole-id').text(`${i[3]}-${i[0]}`)
+                poleVw = true
+                $('.poleView').css('transform', 'translateX(-200px)')
+                closeJBVw()
+                $('.nodeHead').text('Pole Info')
+                $('.jbCont').empty()
+                poleVwJBs(i[0])
+            }
+            else{
+                updatePlotLine([event.latlng.lat.toFixed(5),event.latlng.lng.toFixed(5)])
+            }
         })
     })
 }
@@ -154,21 +159,21 @@ function plotOlts(olt_Data){
         })
 
         .on('click', event =>{
-            $('.poleView').css('transform', 'translateX(-200px)')
-            poleVw=true
-            closeJBVw()
-            $('#poleID').val(`${i[0]}`)
-            $('#poleZone').val(`${i[3]}`)
-            $('#poleCoords').val(`${coordArr[0]}, ${coordArr[1]}`)
-            $('.jbCont').empty()
-            $('.nodeHead').text('OLT Info')
+            if(!addCableVw){
+                $('.poleView').css('transform', 'translateX(-200px)')
+                poleVw=true
+                closeJBVw()
+                $('#poleID').val(`${i[0]}`)
+                $('#poleZone').val(`${i[3]}`)
+                $('#poleCoords').val(`${coordArr[0]}, ${coordArr[1]}`)
+                $('.jbCont').empty()
+                $('.nodeHead').text('OLT Info')
+            }
+            else {
+                updatePlotLine([event.latlng.lat.toFixed(5),event.latlng.lng.toFixed(5)])
+            }
         })
     })
-}
-
-function plotLine(){
-    //* Create A Line
-    new L.polyline([[-9.46925,147.20078],[-9.46901,147.20109]], {color: 'red'}).addTo(map)
 }
 
 function mdgVw(){

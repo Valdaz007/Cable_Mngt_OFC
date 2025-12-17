@@ -54,6 +54,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./inc/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/> -->
     <title>NTT CableManagementSystemOFC</title>
 
     <script src="./inc/js/jquery-3.7.1.min.js"></script>
@@ -100,6 +101,7 @@
 
         <!-- Modals Elements -->
         <?php include './inc/temp/temp_addPole.php'; ?>
+        <?php include './inc/temp/temp_addCableView.php'; ?>
         <?php include './inc/temp/temp_addJuncBox.php'; ?>
         <?php include './inc/temp/temp_addSpltr.php'; ?>
         <?php include './inc/temp/temp_addOLT.php'; ?>
@@ -110,7 +112,7 @@
     <input id="jbsData" type="hidden" style="display:none;" data-jbs='<?php echo getJBs(); ?>'>
 
     <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>    
-
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script> -->
     <script defer>
         //? Prevent Mouse Right Click On Map
         document.getElementById('mapCont')
@@ -119,6 +121,7 @@
         })
     </script>
     <script defer src="./inc/js/func_map.js"></script>
+    <script defer src="./inc/js/func_polyline.js"></script>
     <script defer src="./inc/js/func_main.js"></script>
 </body>
 </html>
