@@ -139,7 +139,7 @@ function plotPole(id, lat, lng, zon){
 
 function plotOlts(olt_Data){
     olt_Data.forEach((i, idx)=>{
-        let coordArr = i[3].split(',')
+        let coordArr = i[4].split(',')
         new L.Marker([coordArr[0],coordArr[1]], iconOptions).addTo(map)
 
         .on("mouseover", event => {
@@ -158,7 +158,7 @@ function plotOlts(olt_Data){
             poleVw=true
             closeJBVw()
             $('#poleID').val(`${i[0]}`)
-            $('#poleZone').val(`${i[1]}`)
+            $('#poleZone').val(`${i[3]}`)
             $('#poleCoords').val(`${coordArr[0]}, ${coordArr[1]}`)
             $('.jbCont').empty()
             $('.nodeHead').text('OLT Info')

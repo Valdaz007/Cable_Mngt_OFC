@@ -32,7 +32,7 @@
     }
 
     function getOLTs(){
-        $sql = "SELECT * FROM `tbl_olts`;";
+        $sql = "SELECT * FROM `tbl_devices` WHERE `dev_type`='OLT';";
         $conxn = openDB();
 
         $rx = mysqli_query($conxn, $sql);

@@ -122,7 +122,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">Desc</th>
                     <th scope="col">Ratio</th>
                     <th scope="col">Tray</th>
                 </tr>
@@ -135,7 +135,7 @@
         data.forEach((i, idx)=>{
             $('.spltrList').append(`
             <tr>
-                <th scope="row">${i[0]}</th>
+                <th scope="row">${i[3]}</th>
                 <td>${i[1]}</td>
                 <td>${i[2]}</td>
             </tr>`)
