@@ -11,3 +11,6 @@ iconOptions.icon = oltIcon
 
 //* Plot OLTs Markers On Map
 plotOlts(JSON.parse($('#oltsData').attr('data-olts')))
+
+//* Plot Cable Line Markers
+plotCables(getDBCables())
